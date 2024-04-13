@@ -21,7 +21,7 @@ model = DFNO_2D.Model(modelConfig)
 θ = DFNO_2D.initModel(model)
 
 input_size = (model.config.nc_in * model.config.nx * model.config.ny * model.config.nt) ÷ prod(partition)
-output_size = (input_size * model.config.nc_out ÷ model.config.nc_in) ÷ prod(partition)
+output_size = (input_size * model.config.nc_out ÷ model.config.nc_in)
 
 x_sample = rand(modelConfig.dtype, input_size, 1)
 y_sample = cu(rand(modelConfig.dtype, output_size, 1))
