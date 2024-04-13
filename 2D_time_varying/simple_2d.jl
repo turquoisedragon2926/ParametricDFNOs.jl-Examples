@@ -2,6 +2,7 @@ using MPI
 using CUDA
 using Zygote
 using ParametricDFNOs.DFNO_2D
+using ParametricDFNOs.UTILS
 
 MPI.Init()
 
