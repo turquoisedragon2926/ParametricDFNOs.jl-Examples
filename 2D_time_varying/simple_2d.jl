@@ -1,7 +1,7 @@
 using MPI
 using CUDA
 using Zygote
-using ParametricDFNOs
+using ParametricDFNOs.DFNO_2D
 
 MPI.Init()
 
@@ -11,7 +11,7 @@ size = MPI.Comm_size(comm)
 
 # Julia requires you to manually assign the gpus, modify to your case.
 CUDA.device!(rank % 4)
-partition = [1,size]
+partition = [1, size]
 
 @assert MPI.Comm_size(comm) == prod(partition)
 modelConfig = DFNO_2D.ModelConfig(nx=20, ny=20, nt=30, mx=4, my=4, mt=4, nblocks=4, partition=partition, dtype=Float32)
