@@ -11,7 +11,6 @@ rank = MPI.Comm_rank(comm)
 size = MPI.Comm_size(comm)
 
 global gpu_flag = parse(Bool, get(ENV, "DFNO_3D_GPU", "0"))
-@info "DFNO_3D is using " * (gpu_flag ? "GPU" : "CPU")
 UTILS.set_gpu_flag(gpu_flag)
 
 # Julia requires you to manually assign the gpus, modify to your case.
