@@ -11,11 +11,14 @@ rank = MPI.Comm_rank(comm)
 size = MPI.Comm_size(comm)
 
 # Julia requires you to manually assign the gpus, modify to your case.
-CUDA.device!(rank % 4)
+DFNO_2D.gpu_flag && (CUDA.device!(rank % 4))
 partition = [1, size]
 
+nx, ny, nt = 20, 20, 30
+modes, nblocks = 8, 4
+
 @assert MPI.Comm_size(comm) == prod(partition)
-modelConfig = DFNO_2D.ModelConfig(nx=20, ny=20, nt=30, mx=4, my=4, mt=4, nblocks=4, partition=partition, dtype=Float32)
+modelConfig = DFNO_2D.ModelConfig(nx=nx, ny=ny, nt=nt, mx=modes, my=modes, mt=modes, nblocks=nblocks, partition=partition, dtype=Float32)
 
 model = DFNO_2D.Model(modelConfig)
 θ = DFNO_2D.initModel(model)
@@ -24,7 +27,9 @@ input_size = (model.config.nc_in * model.config.nx * model.config.ny * model.con
 output_size = (input_size * model.config.nc_out ÷ model.config.nc_in)
 
 x_sample = rand(modelConfig.dtype, input_size, 1)
-y_sample = cu(rand(modelConfig.dtype, output_size, 1))
+y_sample = rand(modelConfig.dtype, output_size, 1)
+
+DFNO_2D.gpu_flag && (y_sample = cu(y_sample))
 
 @time y = DFNO_2D.forward(model, θ, x_sample)
 @time y = DFNO_2D.forward(model, θ, x_sample)

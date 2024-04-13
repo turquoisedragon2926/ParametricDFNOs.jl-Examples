@@ -1,14 +1,16 @@
 using MPI
 using CUDA
-using ParametricDFNOs
+using ParametricDFNOs.DFNO_2D
 
 MPI.Init()
 
 comm = MPI.COMM_WORLD
 rank = MPI.Comm_rank(comm)
-pe_count = MPI.Comm_size(comm)
+size = MPI.Comm_size(comm)
 
-partition = [1,pe_count]
+# Julia requires you to manually assign the gpus, modify to your case.
+CUDA.device!(rank % 4)
+partition = [1, size]
 
 modelConfig = DFNO_2D.ModelConfig(nblocks=4, partition=partition)
 dataConfig = DFNO_2D.DataConfig(modelConfig=modelConfig)
@@ -16,12 +18,12 @@ dataConfig = DFNO_2D.DataConfig(modelConfig=modelConfig)
 x_train, y_train, x_valid, y_valid = DFNO_2D.loadDistData(dataConfig)
 
 trainConfig = DFNO_2D.TrainConfig(
-    epochs=200,
+    epochs=10,
     x_train=x_train,
     y_train=y_train,
     x_valid=x_valid,
     y_valid=y_valid,
-    plot_every=10
+    plot_every=1
 )
 
 model = DFNO_2D.Model(modelConfig)
