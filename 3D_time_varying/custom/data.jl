@@ -14,9 +14,6 @@ function read_perlmutter_data(path::String, modelConfig::ModelConfig, rank::Int;
             dataset = file[key]
             data = dataset[indices[1:3]...]
         end
-        println("Words")
-        println(size(data))
-        println("Words again")
         return reshape(data, 1, (size(data)...), 1)
     end
     
