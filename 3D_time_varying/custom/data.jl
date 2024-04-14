@@ -8,20 +8,20 @@ function read_perlmutter_data(path::String, modelConfig::ModelConfig, rank::Int;
     n = ntrain + nvalid
     
     function read_x_tensor(file_name, key, indices)
-        println("EHELLEO")
+        # println("EHELLEO")
         # indices for xyzn -> cxyzn where c=n=1 (t gets introduced and broadcasted later)
         data = nothing
         h5open(file_name, "r") do file
             dataset = file[key]
-            println(indices)
-            println(size(dataset))
+            # println(indices)
+            # println(size(dataset))
             data = dataset[indices[1:3]...]
         end
         return reshape(data, 1, (size(data)...), 1)
     end
     
     function read_y_tensor(file_name, key, indices)
-        println("afiha")
+        # println("afiha")
         # indices for xyztn -> cxyztn where c=n=1
         data = zeros(modelConfig.dtype, map(range -> length(range), indices[1:4]))
         h5open(file_name, "r") do file
