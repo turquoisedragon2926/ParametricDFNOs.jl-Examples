@@ -1,6 +1,7 @@
 using MPI
 using CUDA
 using ParametricDFNOs.DFNO_2D
+using ParametricDFNOs.UTILS
 using JLD2, FileIO, MAT
 
 MPI.Init()
