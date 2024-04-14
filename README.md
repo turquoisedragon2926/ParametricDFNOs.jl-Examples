@@ -68,4 +68,11 @@ srun julia --project=./ 2D_time_varying/simple_2d.jl
 
 ### Training to predict CO2 saturation (example)
 
+```
+3D_time_varying/custom
+├── data.jl
+├── train.jl
+└── train.sh
+```
+
 We do not provide the dataset, but this is an implementation example for handling complex data storage patters. See [this]() for more documentation.
