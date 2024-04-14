@@ -6,7 +6,7 @@ using ParametricDFNOs.DFNO_3D
 function read_perlmutter_data(path::String, modelConfig::ModelConfig, rank::Int; ntrain::Int=1000, nvalid::Int=100)
 
     n = ntrain + nvalid
-    
+
     function read_x_tensor(file_name, key, indices)
         println(file_name, rank)
         # indices for xyzn -> cxyzn where c=n=1 (t gets introduced and broadcasted later)
@@ -14,6 +14,7 @@ function read_perlmutter_data(path::String, modelConfig::ModelConfig, rank::Int;
         h5open(file_name, "r") do file
             dataset = file[key]
             println(indices)
+            println(dataset[1:1, 1:1, 1:1])
             println(size(dataset))
             data = dataset[indices[1:3]...]
         end
