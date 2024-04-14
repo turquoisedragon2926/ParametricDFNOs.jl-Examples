@@ -18,7 +18,6 @@ DFNO_2D.gpu_flag && (CUDA.device!(rank % 4))
 partition = [1, size]
 
 modelConfig = DFNO_2D.ModelConfig(nblocks=4, partition=partition)
-dataConfig = DFNO_2D.DataConfig(modelConfig=modelConfig)
 
 ### Setup example dataset ###
 
@@ -53,11 +52,13 @@ end
 
 #############################
 
-x_train, y_train, x_valid, y_valid = DFNO_2D.loadDistData(dataConfig, 
-                                                            x_key = "perm",
-                                                            x_file = perm_store_path_jld2,
-                                                            y_key="conc",
-                                                            y_file=conc_store_path_jld2)
+dataConfig = DFNO_2D.DataConfig(modelConfig=modelConfig, 
+                                x_key = "perm",
+                                x_file = perm_store_path_jld2,
+                                y_key="conc",
+                                y_file=conc_store_path_jld2)
+
+x_train, y_train, x_valid, y_valid = DFNO_2D.loadDistData(dataConfig)
 
 trainConfig = DFNO_2D.TrainConfig(
     epochs=10,
