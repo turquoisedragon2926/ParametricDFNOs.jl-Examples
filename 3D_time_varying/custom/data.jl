@@ -64,6 +64,7 @@ function read_perlmutter_data(path::String, modelConfig::ModelConfig, rank::Int;
             idx += 1
         catch e
             (rank == 0) && println("Failed to load data sample no. $(idx). Error: $e")
+            break # TODO: TEMP
             continue
         end
     end
