@@ -1,7 +1,7 @@
 using HDF5
-using .DFNO_3D
+using ParametricDFNOs.DFNO_3D
 
-#### PERLMUTTER Data Loading Hack ####
+#### PERLMUTTER Data Loading ####
 
 function read_perlmutter_data(path::String, modelConfig::ModelConfig, rank::Int; ntrain::Int=1000, nvalid::Int=100)
 
