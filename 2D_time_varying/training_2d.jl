@@ -26,6 +26,7 @@ conc_path_mat = "data/DFNO_2D/conc_gridspacing15.0.mat"
 perm_store_path_jld2 = "data/DFNO_2D/perm_gridspacing15.0.jld2"
 conc_store_path_jld2 = "data/DFNO_2D/conc_gridspacing15.0.jld2"
 
+# TODO: Host a .jld2 file with correct dimensions
 # Check if .jld2 files already exist and skip processing if they do
 if isfile(perm_store_path_jld2) && isfile(conc_store_path_jld2)
     println("JLD2 files already exist, skipping processing.")
@@ -44,6 +45,8 @@ else
     # Load .mat files
     perm = matread(perm_path_mat)["perm"];
     conc = matread(conc_path_mat)["conc"];
+
+    conc = permutedims(conc, [2, 3, 1, 4])
 
     # Save data to .jld2 format
     @save perm_store_path_jld2 perm
