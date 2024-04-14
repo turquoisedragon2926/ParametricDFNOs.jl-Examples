@@ -13,6 +13,8 @@ function read_perlmutter_data(path::String, modelConfig::ModelConfig, rank::Int;
         data = nothing
         h5open(file_name, "r") do file
             dataset = file[key]
+            println(indices)
+            println(size(dataset))
             data = dataset[indices[1:3]...]
         end
         return reshape(data, 1, (size(data)...), 1)
