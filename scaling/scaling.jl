@@ -3,7 +3,6 @@ using ParametricDFNOs.UTILS
 using MPI
 using Zygote
 using DrWatson
-using ParametricOperators
 using CUDA
 
 MPI.Init()
