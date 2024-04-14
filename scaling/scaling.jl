@@ -23,10 +23,10 @@ config = ARGS[8]
 
 modesx = 8
 modesy = 8
-modesz = 4
-modest = 8
+modesz = 8
+modest = 4
 
-modelConfig = DFNO_3D.ModelConfig(nc_lift=24, nx=dimx, ny=dimy, nz=dimz, nt=dimt, mx=modesx, my=modesy, mz=modesz, mt=modest, nblocks=nblocks, partition=partition)
+modelConfig = DFNO_3D.ModelConfig(nc_lift=20, nx=dimx, ny=dimy, nz=dimz, nt=dimt, mx=modesx, my=modesy, mz=modesz, mt=modest, nblocks=nblocks, partition=partition)
 
 model = DFNO_3D.Model(modelConfig)
 θ = DFNO_3D.initModel(model)
