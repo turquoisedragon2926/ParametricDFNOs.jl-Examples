@@ -14,9 +14,9 @@ function read_perlmutter_data(path::String, modelConfig::ModelConfig, rank::Int;
         h5open(file_name, "r") do file
             dataset = file[key]
             println(indices)
-            println(dataset[1:1, 1:1, 1:1])
-            println(size(dataset))
-            data = dataset[indices[1:3]...]
+            println(dataset[1:20, 1:1, 1:1])
+            subset = indices[1:3]
+            data = dataset[subset...]
         end
         return reshape(data, 1, (size(data)...), 1)
     end
