@@ -20,6 +20,8 @@ DFNO_3D.set_gpu_flag(gpu_flag)
 println("Flag: ", DFNO_3D.gpu_flag)
 DFNO_3D.gpu_flag && (CUDA.device!(rank % 4))
 
+println(CUDA.device())
+
 MPI.Barrier(comm)
 
 MPI.Finalize()
