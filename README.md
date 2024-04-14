@@ -17,33 +17,16 @@ julia> ]
 (ParametricDFNOs.jl-Examples) instantiate
 ```
 
-## Non distributed:
-
-You can run the serial programs by doing:
-
-### FFT of 3D Tensor
-```shell
-julia --project=./ 3D_FFT.jl
-```
-
-### Parametrized Convolution on 3D Tensor
-```shell
-julia --project=./ 3D_Conv.jl
-```
-
-## Distributed:
+## Distributed 2D Time Varying FNO:
 
 > [!WARNING]  
 > Make sure to have a proper MPI distribution loaded.
 
+### Simple Forward and Gradient Pass
 If you have [`mpiexecjl`](https://juliaparallel.org/MPI.jl/stable/usage/#Installation) set up, you can do:
 
 ```shell
-# To run the 3D FFT example
-mpiexecjl --project=./ -n NTASKS julia 3D_DFFT.jl
-
-# To run the 3D convolution example
-mpiexecjl --project=./ -n NTASKS julia 3D_DConv.jl
+mpiexecjl --project=./ -n NTASKS julia 2D_time_varying/simple_2d.jl
 ```
 
 OR if you have a HPC cluster with [`slurm`](https://slurm.schedmd.com/documentation.html) set up, you can do:
@@ -57,12 +40,32 @@ salloc --gpus=NTASKS --time=01:00:00 --ntasks=NTASKS --gpus-per-task=1 --gpu-bin
 
 Now run any of the distributed examples:
 
-### Distributed FFT of a 3D Tensor
+### Simple Forward and Gradient Pass
+
 ```shell
-srun julia --project=./ 3D_DFFT.jl
+srun julia --project=./ 2D_time_varying/simple_2d.jl
 ```
 
-### Distributed Parametrized Convolution of a 3D Tensor
+### Training to predict CO2 saturation (dataset provided)
+
 ```shell
-srun julia --project=./ 3D_DConv.jl
+srun julia --project=./ 2D_time_varying/training_2d.jl
 ```
+
+## Distributed 3D Time Varying FNO:
+
+### Simple Forward and Gradient Pass
+
+```shell
+mpiexecjl --project=./ -n NTASKS julia 2D_time_varying/simple_2d.jl
+```
+
+OR
+
+```shell
+srun julia --project=./ 2D_time_varying/simple_2d.jl
+```
+
+### Training to predict CO2 saturation (example)
+
+We do not provide the dataset, but this is an implementation example for handling complex data storage patters. See [this]() for more documentation.
