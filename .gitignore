@@ -2,3 +2,5 @@ Manifest.toml
 data/
 plots/
 weights/
+.jld2
+scaling_results/
