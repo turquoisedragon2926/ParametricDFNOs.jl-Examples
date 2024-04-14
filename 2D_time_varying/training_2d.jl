@@ -8,14 +8,14 @@ MPI.Init()
 
 comm = MPI.COMM_WORLD
 rank = MPI.Comm_rank(comm)
-size = MPI.Comm_size(comm)
+pe_count = MPI.Comm_size(comm)
 
 global gpu_flag = parse(Bool, get(ENV, "DFNO_2D_GPU", "0"))
 UTILS.set_gpu_flag(gpu_flag)
 
 # Julia requires you to manually assign the gpus, modify to your case.
 DFNO_2D.gpu_flag && (CUDA.device!(rank % 4))
-partition = [1, size]
+partition = [1, pe_count]
 
 modelConfig = DFNO_2D.ModelConfig(nblocks=4, partition=partition)
 
