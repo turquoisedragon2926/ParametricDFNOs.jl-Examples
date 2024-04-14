@@ -21,7 +21,6 @@ function read_perlmutter_data(path::String, modelConfig::ModelConfig, rank::Int;
     end
     
     function read_y_tensor(file_name, key, indices)
-        # println("afiha")
         # indices for xyztn -> cxyztn where c=n=1
         data = zeros(modelConfig.dtype, map(range -> length(range), indices[1:4]))
         h5open(file_name, "r") do file
