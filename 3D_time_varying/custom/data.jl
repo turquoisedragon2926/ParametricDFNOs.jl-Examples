@@ -8,6 +8,7 @@ function read_perlmutter_data(path::String, modelConfig::ModelConfig, rank::Int;
     n = ntrain + nvalid
     
     function read_x_tensor(file_name, key, indices)
+        println("EHELLEO")
         # indices for xyzn -> cxyzn where c=n=1 (t gets introduced and broadcasted later)
         data = nothing
         h5open(file_name, "r") do file
