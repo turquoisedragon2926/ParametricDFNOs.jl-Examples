@@ -30,7 +30,7 @@ conc_store_path_jld2 = "data/DFNO_2D/conc_gridspacing15.0.jld2"
 # Check if .jld2 files already exist and skip processing if they do
 if isfile(perm_store_path_jld2) && isfile(conc_store_path_jld2)
     println("JLD2 files already exist, skipping processing.")
-else
+else if rank == 0
     ensure_directory = path -> isdir(path) || mkpath(path)
     ensure_downloaded = (url, path) -> isfile(path) || run(`wget $url -q -O $path`)
 
@@ -52,6 +52,8 @@ else
     @save perm_store_path_jld2 perm
     @save conc_store_path_jld2 conc
 end
+
+MPI.Barrier(comm)
 
 #############################
 
