@@ -4,3 +4,4 @@ plots/
 weights/
 .jld2
 scaling_results/
+slurm*
