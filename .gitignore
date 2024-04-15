@@ -5,3 +5,4 @@ weights/
 .jld2
 scaling_results/
 slurm*
+*.mp4
