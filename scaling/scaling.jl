@@ -26,7 +26,7 @@ modesx = 32
 modesy = 2
 modesz = 2
 
-modelConfig = DFNO_3D.ModelConfig(nc_lift=16, nx=dimx, ny=dimy, nz=dimz, nt=dimt, mx=modesx, my=modesy, mz=modesz, mt=modest, nblocks=nblocks, partition=partition)
+modelConfig = DFNO_3D.ModelConfig(nx=dimx, ny=dimy, nz=dimz, nt=dimt, mx=modesx, my=modesy, mz=modesz, mt=modest, nblocks=nblocks, partition=partition)
 
 model = DFNO_3D.Model(modelConfig)
 θ = DFNO_3D.initModel(model)
