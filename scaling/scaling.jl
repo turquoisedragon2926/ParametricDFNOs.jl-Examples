@@ -21,8 +21,8 @@ partition = [1, pe_count]
 nodes, gpus, dimx, dimy, dimz, dimt, nblocks = parse.(Int, ARGS[1:7])
 config = ARGS[8]
 
-modest = 16
-modesx = 32
+modest = 8
+modesx = 64
 modesy = 2
 modesz = 2
 
