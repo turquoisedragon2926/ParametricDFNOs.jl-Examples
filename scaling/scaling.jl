@@ -22,9 +22,9 @@ nodes, gpus, dimx, dimy, dimz, dimt, nblocks = parse.(Int, ARGS[1:7])
 config = ARGS[8]
 
 modest = 8
-modesx = 64
-modesy = 2
-modesz = 2
+modesx = 8
+modesy = 8
+modesz = 4
 
 modelConfig = DFNO_3D.ModelConfig(nx=dimx, ny=dimy, nz=dimz, nt=dimt, mx=modesx, my=modesy, mz=modesz, mt=modest, nblocks=nblocks, partition=partition)
 
