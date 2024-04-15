@@ -21,12 +21,12 @@ partition = [1, pe_count]
 nodes, gpus, dimx, dimy, dimz, dimt, nblocks = parse.(Int, ARGS[1:7])
 config = ARGS[8]
 
-modesx = 8
+modesx = 2
 modesy = 8
 modesz = 8
-modest = 4
+modest = 2
 
-modelConfig = DFNO_3D.ModelConfig(nc_lift=20, nx=dimx, ny=dimy, nz=dimz, nt=dimt, mx=modesx, my=modesy, mz=modesz, mt=modest, nblocks=nblocks, partition=partition)
+modelConfig = DFNO_3D.ModelConfig(nc_lift=21, nx=dimx, ny=dimy, nz=dimz, nt=dimt, mx=modesx, my=modesy, mz=modesz, mt=modest, nblocks=nblocks, partition=partition)
 
 model = DFNO_3D.Model(modelConfig)
 θ = DFNO_3D.initModel(model)
