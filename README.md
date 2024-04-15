@@ -75,4 +75,4 @@ srun julia --project=./ 2D_time_varying/simple_2d.jl
 └── train.sh
 ```
 
-We do not provide the dataset, but this is an implementation example for handling complex data storage scheme. See [this]() for more documentation.
+We do not provide the dataset, but this is an implementation example for handling complex data storage scheme. See [this](https://slimgroup.github.io/ParametricDFNOs.jl/dev/examples/custom_3D/) for more documentation.
