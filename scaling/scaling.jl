@@ -21,11 +21,12 @@ partition = [1, pe_count]
 nodes, gpus, dimx, dimy, dimz, dimt, nblocks = parse.(Int, ARGS[1:7])
 config = ARGS[8]
 
-modesx = 16
-modesy = 4
-modesz = 4
 modest = 8
+modesx = 8
+modesy = 8
+modesz = 4
 
+(gpus > 64) && (modesx = modesx * 2)
 (gpus > 128) && (modesx = modesx * 2)
 (gpus > 256) && (modesx = modesx * 2)
 
