@@ -1,3 +1,6 @@
+using Pkg
+Pkg.activate("./")
+
 using JLD2
 using PyPlot
 
@@ -13,7 +16,7 @@ function read_keys_from_jld2(file_path, keys)
 end
 
 folder = ARGS[1]
-directory = "./$folder/"
+directory = "./scaling_results/$folder/"
 
 # Get all JLD2 files in the current directory
 jld2_files = filter(x -> occursin(r"\.jld2$", x), readdir(directory))
